@@ -1,9 +1,2 @@
-Aqui estou estudando e aprimorando meus conhecimentos em git.
+Neste repositório guardarei meus códigos usados em linguagem C no estudo de Estrutura de Dados I.
 
->Status: Desenvolvimento...
-
-Para rodar, digite:
-
-```
-node app.jss
-``
