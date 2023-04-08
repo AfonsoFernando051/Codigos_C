@@ -11,8 +11,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
 int EUF(){
     int entrada;
 
@@ -77,6 +75,7 @@ float preencheVetor(int recebeInteiro,float vetor[]){
         vetor[recebeInteiro] = calculaSalario(salarioAtual);
         acumulaSalario += vetor[recebeInteiro];
     }
+    free(vetor);
         printf("Acumulo :%.2f",acumulaSalario);
     return acumulaSalario;
 }
@@ -89,7 +88,23 @@ float mediaSalarios(float acumulaSalario, int recebeInteiro){
     return mediaSalario;
 }
 
-//strncpy()
+void strncpy(char String2[], char String1[]){
+int tamanhoCopia;
+tamanhoCopia = inteiro();
+char stringCopiada[50];
+int itera = tamanhoCopia;
+for(int i = 0; i < tamanhoCopia;i++){
+		String2[i] = String1[i];
+}
+	for(int j = 0; j<strlen(String2);j++){
+		if(itera < strlen(String2)){
+			String2[itera] = " ";
+			itera++;
+		}
+
+	}
+printf("%s",String2);
+}
 
 int main(void) {
 	setbuf(stdin,NULL);
@@ -99,7 +114,6 @@ int main(void) {
     float salarioAtual;
     float salario;
     float acumulaSalario;
-
 
 	do{
 	entrada = EUF();
@@ -115,7 +129,9 @@ int main(void) {
     }
 
     if(entrada == 2){
-    	//strncpy()
+    	char String1[50] = "teste1";
+    	char String2[50] = "teste2";
+    	strncpy(String2, String1);
 
      }
     if(entrada == 3){
