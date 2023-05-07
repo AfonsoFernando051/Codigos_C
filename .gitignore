@@ -1,3 +1,5 @@
 ./.vscode
 ./.metada
 ./.pacman_eclipse
+./pacman/a.out
+./pacman/.project
