@@ -11,66 +11,72 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int EUF(){
+    int entrada;
 
-char EUF(){
-    char entrada;
-    
     do{
 	    printf("\nDigite o valor de entrada:  \n");
-        scanf("%c", &entrada);
-	    printf("\nA - Calcular novo salario: \n");
-	    printf("\nB - Minha strncpy\n");
-	    printf("\nC - Finalizar\n");
-    }while(entrada != 'c');
+	    printf("\n1 - Calcular novo salario: \n");
+	    printf("\n2 - Minha strncpy\n");
+	    printf("\n3 - Finalizar\n");
+        scanf("%d", &entrada);
+    }while(entrada != 1 && entrada != 2 && entrada != 3);
 
     return entrada;
 
 }
 
-int inteiro(int* valor){
+int inteiro(){
+    int valor;
 	do{
-		printf("\nDigite o tamanho do array: \n");
-		scanf("%d", *valor);
-	}while(valor>51);
+		printf("\nDigite o tamanho do array: (Ate 50)\n");
+		scanf("%d", &valor);
+	}while(valor>50);
 	return valor;
 }
 
-float recebeSalariofloat(float salario){
+float recebeSalariofloat(){
+    float salario;
 	do{
 		printf("\nDigite o valor(real) do salario: \n");
-		scanf("%f", salario);
-	}while(salario<0);
+		scanf("%f", &salario);
+		if(salario<=0){
+			printf("\nDigite novamente.\n");
+		}
+	}while(salario<=0);
     return salario;
 }
 
 float calculaSalario(float salarioAtual){
-    printf("\nDigite o valor do salario para ajuste: \n");
+    float salarioNovo;
     if(salarioAtual <= 2500){
-        salarioAtual += (salarioAtual * 0,15)+salarioAtual; 
-        printf("\nAumento de 15 por cento\n");
-        printf("\n%fn",salarioAtual );
-        return salarioAtual;
+        salarioNovo = ((salarioAtual/100)*15)+salarioAtual;
+        printf("\nAjuste de %.2f para %.2f. Aumento de 15 por cento.\n",salarioAtual, salarioNovo);
     }
-    if(salarioAtual > 2500 && salarioAtual <= 7000){
-        salarioAtual += (salarioAtual * 0,075)+salarioAtual; 
-        printf("\nAumento de 7.5 por cento\n");
-        printf("\n%fn",salarioAtual );
-        return salarioAtual;
+    else if(salarioAtual > 2500 && salarioAtual <= 7000){
+        salarioNovo = ((salarioAtual/100)*7.5)+salarioAtual;
+        printf("\nAjuste de %.2f para %.2f. Aumento de 15 por cento.\n",salarioAtual, salarioNovo);
+
     }
-     if(salarioAtual > 7000){
+     else if(salarioAtual > 7000){
         printf("\nSem aumento\n");
-        return salarioAtual;
     }
+    return salarioNovo;
+
 }
 
-float preencheEAcumulaVetor(float caulculoDoSalario,int *valor,float vetor[]){
+float preencheVetor(int recebeInteiro,float vetor[]){
     //matriz = malloc(sizeof(char*) * m->linhas);
-    float acumulaSalario;
-    malloc(sizeof(float) * (*valor));
-    for(int i = 0; i<valor;i++){
-        vetor[i] = caulculoDoSalario;
-        acumulaSalario += vetor[i];     
+	float acumulaSalario;
+    vetor = malloc(sizeof(float) * (recebeInteiro));
+    for(int i = 0; i<recebeInteiro;i++){
+        vetor[recebeInteiro] = recebeSalariofloat();
+        float salarioAtual = vetor[recebeInteiro];
+        vetor[recebeInteiro] = calculaSalario(salarioAtual);
+        acumulaSalario += vetor[recebeInteiro];
     }
+    free(vetor);
+        printf("Acumulo :%.2f",acumulaSalario);
     return acumulaSalario;
 }
 
@@ -78,30 +84,58 @@ float mediaSalarios(float acumulaSalario, int recebeInteiro){
     float mediaSalario;
     mediaSalario = acumulaSalario/recebeInteiro;
 
-    printf("\nA media de salarios e: %f\n",mediaSalario);
+    printf("\nA media de salarios e: %.2f\n",mediaSalario);
+    return mediaSalario;
+}
+
+void strncpy(char String2[], char String1[]){
+int tamanhoCopia;
+tamanhoCopia = inteiro();
+char stringCopiada[50];
+int itera = tamanhoCopia;
+for(int i = 0; i < tamanhoCopia;i++){
+		String2[i] = String1[i];
+}
+	for(int j = 0; j<strlen(String2);j++){
+		if(itera < strlen(String2)){
+			String2[itera] = " ";
+			itera++;
+		}
+
+	}
+printf("%s",String2);
 }
 
 int main(void) {
+	setbuf(stdin,NULL);
+    int entrada;
     int valor;
     int recebeInteiro;
     float salarioAtual;
     float salario;
-    float caulculoDoSalario;
     float acumulaSalario;
 
-	    EUF();
-	   
-        recebeInteiro = inteiro(valor);
+	do{
+	entrada = EUF();
 
-        float* vetor;
+    if(entrada == 1){
+    recebeInteiro = inteiro();
 
-        salarioAtual = recebeSalariofloat(salario);
-        caulculoDoSalario = calculaSalario(salarioAtual);
+    float* vetor;
 
-       acumulaSalario = preencheEAcumulaVetor(caulculoDoSalario, recebeInteiro, vetor);
+    acumulaSalario = preencheVetor(recebeInteiro, vetor);
 
-        mediaSalarios(acumulaSalario, recebeInteiro);
+    mediaSalarios(acumulaSalario, recebeInteiro);
+    }
 
+    if(entrada == 2){
+    	char String1[50] = "teste1";
+    	char String2[50] = "teste2";
+    	strncpy(String2, String1);
 
-
+     }
+    if(entrada == 3){
+    	printf("\nFinalizamos\n");
+       }
+	}while(entrada != 3);
 }
