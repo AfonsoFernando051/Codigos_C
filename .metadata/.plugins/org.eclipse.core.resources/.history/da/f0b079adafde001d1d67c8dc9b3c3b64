@@ -1,0 +1,25 @@
+/*
+ ============================================================================
+ Name        : prova.c
+ Author      : fernando
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int entrada(int* opcao){
+	printf("Digite");
+	scanf("%d",*opcao);
+	return *opcao;
+}
+
+int main(void) {
+	int opcao = 0;
+	int entrada1;
+	entrada1 = entrada(&opcao);
+	printf("%d", entrada1);
+}

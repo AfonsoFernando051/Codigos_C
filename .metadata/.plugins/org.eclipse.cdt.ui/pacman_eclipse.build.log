@@ -1,0 +1,6 @@
+09:36:46 **** Incremental Build of configuration Debug for project pacman_eclipse ****
+make all 
+make: Nada a ser feito para 'all'. 
+
+09:36:46 Build Finished. 0 errors, 0 warnings. (took 159ms)
+
