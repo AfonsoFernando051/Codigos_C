@@ -27,5 +27,7 @@ typedef struct {
 void cria(PILHA*);
 int vazia(PILHA);
 int push (ITEM x, PILHA * pilha);
-int pop(ITEM x, PILHA*);
+int pop(PILHA * pilha, ITEM *item);
+int look(PILHA *pilha, ITEM *item);
+int tamanho (PILHA pilha);
 #endif /* LYB_H_ */

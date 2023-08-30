@@ -30,6 +30,29 @@ int push (ITEM x, PILHA * pilha){
 	return 0;
 }
 
-//int pop(ITEM x, PILHA * pilha){
-//
-//}
+int pop(PILHA * pilha, ITEM *item){
+	PONT q;
+
+	if(vazia(*pilha)){
+		return 1;
+	}
+
+	q = pilha->topo;
+	pilha->topo = q->prox;
+	*item = q->prox->item;
+	free(q);
+	pilha->tamanho--;
+	return 0;
+}
+
+int look(PILHA *pilha, ITEM *item){
+	if(vazia(*pilha)){
+		return -1;
+	}
+	*item = pilha->topo->prox->item;
+	return 0;
+}
+
+int tamanho (PILHA pilha){
+	return pilha.tamanho;
+}
